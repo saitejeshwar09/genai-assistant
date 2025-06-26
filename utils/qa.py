@@ -2,14 +2,8 @@ import spacy
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-import spacy
-import subprocess
-
-try:
-    nlp = spacy.load("en_core_web_sm")
-except:
-    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
-    nlp = spacy.load("en_core_web_sm")
+from utils.spacy_model import get_spacy_model
+nlp = get_spacy_model()
 
 
 def answer_question(question, paragraphs, top_k=1):
