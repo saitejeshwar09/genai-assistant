@@ -2,7 +2,15 @@ import spacy
 from difflib import SequenceMatcher
 from random import shuffle
 
-nlp = spacy.load("en_core_web_sm")
+import spacy
+import subprocess
+
+try:
+    nlp = spacy.load("en_core_web_sm")
+except:
+    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+    nlp = spacy.load("en_core_web_sm")
+
 
 def generate_questions(paragraphs, num=3):
     questions = []

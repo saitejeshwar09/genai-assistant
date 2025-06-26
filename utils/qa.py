@@ -2,7 +2,15 @@ import spacy
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-nlp = spacy.load("en_core_web_sm")
+import spacy
+import subprocess
+
+try:
+    nlp = spacy.load("en_core_web_sm")
+except:
+    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+    nlp = spacy.load("en_core_web_sm")
+
 
 def answer_question(question, paragraphs, top_k=1):
     # Extract only text for TF-IDF
